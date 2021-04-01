@@ -4,8 +4,8 @@
   "version": "1.0",
   "manifest_version": 2,
   "browser_action": {
-    "default_popup": "hello.html",
-    "default_icon": "icon.png"
+    "default_title": "hello",
+    "default_icon": "./asset/img/icon.png"
   },
   "commands": {
     "_execute_browser_action": {
@@ -17,10 +17,12 @@
     }
   },
   "icons": {
-    "16": "icon.png",
-    "128": "icon.png"
+    "16": "./asset/img/icon.png",
+    "48": "./asset/img/icon.png",
+    "128": "./asset/img/icon.png"
   },
   "permissions": [
+    "contextMenus",
     "tabs",
     "storage",
     "http://*/*",
