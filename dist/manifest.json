@@ -2,18 +2,33 @@
   "name": "Hello Extensions",
   "description": "Hello world Extension",
   "version": "1.0",
-  "manifest_version": 2,
-  "browser_action": {
+  "manifest_version": 3,
+  "action": {
+    "default_popup": "./page/bye.html",
     "default_title": "hello",
-    "default_icon": "./asset/img/icon.png"
+    "default_icon": {
+      "16": "./asset/img/icon.png",
+      "48": "./asset/img/icon.png",
+      "128": "./asset/img/icon.png"
+    }
   },
-  "commands": {
+  "options_page": "./page/options.html",
+  "commands": { 
+    "toggle-feature-foo": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Y",
+        "mac": "Command+Shift+Y"
+      },
+      "description": "Toggle feature foo"
+    },
     "_execute_browser_action": {
       "suggested_key": {
         "default": "Ctrl+Shift+F",
-        "mac": "MacCtrl+Shift+F"
-      },
-      "description": "Opens hello.html"
+        "windows": "Ctrl+Shift+F",
+        "mac": "Command+Shift+F",
+        "chromeos": "Ctrl+Shift+U",
+        "linux": "Ctrl+Shift+J"
+      }
     }
   },
   "icons": {
@@ -23,16 +38,15 @@
   },
   "permissions": [
     "contextMenus",
+    "activeTab",
     "tabs",
     "storage",
-    "http://*/*",
-    "https://*/*"
+    "scripting"
   ],
   "content_scripts": [
     {
       "matches": [
-        "http://*/*",
-        "https://*/*"
+        "https://live.bilibili.com/22950505/*"
       ],
       "js": [
         "scripts/contentscript.js"
@@ -42,8 +56,6 @@
     }
   ],
   "background": {
-    "scripts": [
-      "scripts/background.js"
-    ]
+    "service_worker": "background.js"
   }
 }
